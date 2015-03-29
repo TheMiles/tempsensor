@@ -10,7 +10,7 @@ def readTempValue( filename ):
 
 	try:
 		data = open( filename, 'r').read()
-		t    = re.search( "t=([0-9]+)", data).group[1]
+		t    = re.search( "t=([0-9]+)", data).group(1)
 		temperature = float( t ) / 1000.0
 
 	except:
