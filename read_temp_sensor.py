@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import argparse
-import re
+import re, time
 
 
 def readTempValue( filename ):
@@ -25,12 +25,14 @@ def readTempValue( filename ):
 def main():
 
     parser = argparse.ArgumentParser(description='Reads out current value from temperature sensor')
-    parser.add_argument('device', metavar='DEVICE', type=str, nargs='?', default='/sys/bus/w1/devices/28-000004f56d5a/w1_slave',
-                        help='')
+    parser.add_argument('device', metavar='DEVICE', type=str, nargs='?', default='/sys/bus/w1/devices/28-000004f56d5a/w1_slave', help='Path to the device file')
+    parser.add_argument('-w', '--waittime', type=int, default=1, help='Seconds to wait between two measurements')
     args = parser.parse_args()
 
-    print readTempValue( args.device )
+    for i in range(1):
 
+	    print readTempValue( args.device )
+	    time.sleep( args.waittime )
 
 
 
